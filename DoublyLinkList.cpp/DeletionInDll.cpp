@@ -66,10 +66,60 @@ Node* deletetail(Node* head) {
     return head;
 }
 
+Node* deletek(Node* head , int k) {
+    if(head == NULL) {
+        return NULL;
+    }
+    int cnt = 0;
+    Node* temp = head;
+    while(temp != NULL) {
+        cnt++;
+        if(cnt == k) break;
+        temp = temp->next;
+    }
+    Node* front = temp->next;
+    Node* back = temp->prev;
+
+    if(front == NULL && back == NULL) {
+        return NULL;
+    }
+    else if(back == NULL) {
+        return deleteHead(head);
+    }
+    else if(front == NULL) {
+        return deletetail(head);
+    }
+    back->next = front;
+    front->prev = back;
+    temp->next = nullptr;
+    temp->prev = nullptr;
+    return head;
+}
+
+void deleteNode(Node* temp) { //this is s void func becsuse there is no change of head in this this ques only aksed for a node before deletion.
+    Node* back = temp->prev;
+    Node* front = temp->next;
+
+    if(front == NULL) {
+        back->next = nullptr;
+        temp->prev = nullptr;
+        delete(temp);
+        return;
+    }
+    back->next = front;
+    front->prev = back;
+
+    temp->next = temp->prev = nullptr;
+    delete(temp);
+
+}
+
 int main() {
     vector<int> arr = {2,5,6,3,8};
     Node* head = convert2Dll(arr);
     // head = deleteHead(head);
-    head = deletetail(head);
+    // head = deletetail(head);
+    // head = deletek(head , 2);
+    deleteNode(head->next);
     print(head);
 }

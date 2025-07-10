@@ -16,7 +16,7 @@ class Node {
         prev = prev1;
     }
 
-    public:
+    public: 
     Node(int data1) {
         data = data1;
         next = nullptr;
@@ -74,7 +74,7 @@ Node* insertkth(Node* head ,int k, int val) {
     return head;
 }
 
-void insertBeforeNode(Node* node , int val) {
+void insertBeforeNode(Node* node , int val) { //in this we do not want to change head so it is just an insertion method.
     Node* back = node->prev;
     Node* newNode = new Node(val , node , back);
     back->next = newNode;

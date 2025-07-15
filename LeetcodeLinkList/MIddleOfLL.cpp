@@ -1,5 +1,5 @@
 #include <iostream>
-#include <bits/stdc++.h>
+// #include <bits/stdc++.h>
 
 using namespace std;
 
@@ -59,13 +59,15 @@ Node *findMiddle(Node *head) {
     return temp;
 }
 
+// <-------------------------OPTIMAL SOLUTION---------------------------->
+
 Node* findMidOptimal(Node* head) {
         Node* slow = head;
         Node* fast = head;
 
         while(fast != NULL && fast->next != NULL) {
             slow = slow->next;
-            fast = fast->next->next;
+            fast = fast->next->next; //always remember fast moves two step
         } return slow;
 }
 
